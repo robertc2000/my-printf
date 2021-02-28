@@ -31,7 +31,7 @@ static void swap(char *a, char *b)
 
 }
 
-static void mirror(char *s) // rastoarna un string
+static void mirror(char *s)
 {
 	char* start = s, *end = s;
 	while(*end != '\0')
@@ -56,23 +56,16 @@ static int write_int(int x)
 	}
 	char* string = malloc(100);
 	int i = 0, negative = 0;
-	/* daca numarul este negativ se afiseaza
-	mai intai '-'
-	negative indica daca numarul este negativ
-	sau nu */
 	if(x < 0){
 		write_char('-');
 		negative++;
 	}
-	// se introduc cifrele in string
-	// stringul va fi in ordine inversa initial
 	while(x){
 		string[i] = abs((x % 10)) + '0';
 		i++;
 		x /= 10;
 	}
 	string[i] = '\0';
-	// se inverseaza stringul
 	mirror(string);
 	int len = strlen(string);
 	write_stdout(string, strlen(string));
@@ -148,7 +141,7 @@ int iocla_printf(const char *format, ...)
 	va_start(args, format);
 	int nr_args = 0;
 	char* s = (char*) format;
-	// parcurgere "format"
+	// iterating through "format"
 	while(*s != '\0'){
 		if(s[0] == '%'){
 			if(s[1] == 'd'){
